@@ -1,4 +1,5 @@
 import { validate as uuidValidate} from 'uuid';
+import FormatUtils from '../utils/formatUtils.js';
 
 export default (userRepo) => {
   const listUsers = (_, res) => {
@@ -9,6 +10,24 @@ export default (userRepo) => {
 
   const createUser = (req, res) => {
     const data = req.body;
+
+    if (!FormatUtils.validatePhoneFormat(data.phone)) {
+      return res.status(400).send({
+        error: "Bad format phone number"
+      })
+    }
+
+    if (!FormatUtils.validateDateFormat(data.birthDate)) {
+      return res.status(400).send({
+        error: "Bad format date"
+      })
+    }
+
+    if (!FormatUtils.validateEmailFormat(data.email)) {
+      return res.status(400).send({
+        error: "Bad format email"
+      })
+    }
 
     const user = userRepo.createUser(data)
     res.status(201).send({
@@ -24,6 +43,24 @@ export default (userRepo) => {
       return res.status(400).send({
         error : `L'ID renseigné n'est pas de type UUID`
       })      
+    }
+
+    if (!FormatUtils.validatePhoneFormat(data.phone)) {
+      return res.status(400).send({
+        error: "Bad format phone number"
+      })
+    }
+
+    if (!FormatUtils.validateDateFormat(data.birthDate)) {
+      return res.status(400).send({
+        error: "Bad format date"
+      })
+    }
+
+    if (!FormatUtils.validateEmailFormat(data.email)) {
+      return res.status(400).send({
+        error: "Bad format email"
+      })
     }
 
     const user = userRepo.updateUser(id, data);

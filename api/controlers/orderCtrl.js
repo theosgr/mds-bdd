@@ -1,5 +1,6 @@
 import { validate as uuidValidate} from 'uuid';
 import moment from 'moment';
+import FormatUtils from '../utils/formatUtils.js';
 
 export default (orderRepo) => {
 
@@ -15,6 +16,12 @@ export default (orderRepo) => {
     if (data.quantity <= 0) {
       return res.status(400).send({
         error: "Quantity must be 1 or more"
+      })
+    }
+
+    if (!FormatUtils.validateDateFormat(data.orderDate)) {
+      return res.status(400).send({
+        error: "Bad format date"
       })
     }
 
@@ -128,6 +135,12 @@ export default (orderRepo) => {
     if (data.quantity <= 0) {
       return res.status(400).send({
         error: "Quantity must be 1 or more"
+      })
+    }
+
+    if (!FormatUtils.validateDateFormat(data.orderDate)) {
+      return res.status(400).send({
+        error: "Bad format date"
       })
     }
 

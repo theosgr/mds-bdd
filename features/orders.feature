@@ -44,6 +44,13 @@ Feature: Orders Feature
     Then I should have response "BAD_REQUEST"
      And following error : "You can't create an order in the past"
 
+  Scenario: Create an order with bad format date
+    When I create the following "order":
+      | orderDate | recipeId | quantity | userId |
+      | 20230909 | a35ce12d-d52b-4a07-90ad-68e985b779e7 | 1 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+    Then I should have response "BAD_REQUEST"
+     And following error : "Bad format date"
+
   Scenario: Get order by id
     When I get the "order" having id "375f5512-facd-4cf8-a6c6-3cc8dbf992bc"
     Then I should have response "OK"
@@ -141,6 +148,13 @@ Feature: Orders Feature
       | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "BAD_REQUEST"
      And following error : "L'ID renseigné n'est pas de type UUID"
+  
+  Scenario: Update an order with bad date format
+    When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
+      | orderDate | recipeId | quantity | userId |
+      | 20230312 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+    Then I should have response "BAD_REQUEST"
+     And following error : "Bad format date"
 
   Scenario: Update an order bad quantity
     When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
