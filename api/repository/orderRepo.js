@@ -126,7 +126,7 @@ export default (Order, User, Recipe) => {
     const updatedOrder = orders.find(o => o.id === id)
     if (updatedOrder) {
       updatedOrder.recipeId = order.recipeId
-      updatedOrder.orderDate = moment().format("YYYY-MM-DD")
+      updatedOrder.orderDate = order.orderDate
       updatedOrder.quantity = order.quantity
       updatedOrder.userId = order.userId
       return updatedOrder

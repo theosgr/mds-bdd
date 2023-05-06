@@ -107,45 +107,45 @@ Feature: Orders Feature
 
   Scenario: Update an order
     When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "OK"
      And following "order" item datas updated:
-      | id | recipeId | quantity | userId |
-      | 1d2066d3-054a-4193-ac53-a1e9d028db8f | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | id | orderDate | recipeId | quantity | userId |
+      | 1d2066d3-054a-4193-ac53-a1e9d028db8f | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
   
   Scenario: Update an unknown order
     When I update the "order" having id "11fb5610-adf2-433d-a5eb-5f80aaa17826" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "NOT_FOUND"
      And following error : "Unknown order"
     
   Scenario: Update order with unknown recipe
     When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852xx1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852xx1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "NOT_FOUND"
      And following error : "Unknown recipe"
 
   Scenario: Update order with unknown user
     When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852da1 | 3 | mo1z0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | mo1z0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "NOT_FOUND"
      And following error : "Unknown user"
      
   Scenario: Update an order with bad uuid
     When I update the "order" having id "baduuid" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 3 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "BAD_REQUEST"
      And following error : "L'ID renseigné n'est pas de type UUID"
 
   Scenario: Update an order bad quantity
     When I update the "order" having id "1d2066d3-054a-4193-ac53-a1e9d028db8f" with following data:
-      | recipeId | quantity | userId |
-      | dc466424-4297-481a-a8de-aa0898852da1 | 0 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
+      | orderDate | recipeId | quantity | userId |
+      | 2023-03-12 | dc466424-4297-481a-a8de-aa0898852da1 | 0 | a70f0f97-8ec0-4d66-8bfc-975357f37a1e |
     Then I should have response "BAD_REQUEST"
      And following error : "Quantity must be 1 or more"
 

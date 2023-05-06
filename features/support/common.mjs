@@ -69,8 +69,7 @@ Then(/following ["a-zA-Z]+ item:/, function(expectedData) {
 
 Then(/following ["a-zA-Z]+ item datas updated:/, function(expectedData) {
   const orderData = this.response.body.data;
-  chai.expect(orderData).to.include(expectedData.hashes()[0]);
-  chai.expect(orderData.orderDate).to.deep.equal(moment().format("YYYY-MM-DD"))
+  chai.expect(orderData).to.deep.equal(expectedData.hashes()[0]);
 });
 
 Then(/following deleted ["a-zA-Z]+ item:/, function(expectedData) {
